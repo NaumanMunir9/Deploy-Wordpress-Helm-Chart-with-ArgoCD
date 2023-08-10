@@ -97,7 +97,7 @@ Go to "Application" > "New App"
 
 - DESTINATION
   - Cluster URL: https://kubernetes.default.svc
-  - Namespace: default
+  - Namespace: wordpress
   - CHECK: AUTO-CREATE NAMESPACE
 
 ---
