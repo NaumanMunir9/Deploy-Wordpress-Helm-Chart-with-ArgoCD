@@ -47,8 +47,10 @@ k get all -n argocd
 
 ### Login ArgoCD Web Interface
 
-username: admin
-password: "**please enter the following command in the terminal**"
+- ArgoCD UI admin **username**: *admin*
+- ArgoCD UI admin **password**: *xxxxxxxxxxxx*
+
+##### For retrieving ArgoCD UI admin password, paste the following command in the terminal:
 
 ```shell
 k -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
@@ -70,5 +72,42 @@ k -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}
 ***DIRECTORY***
 
 - **DIRECTORY RECURSE**: CHECKED
+
+---
+
+### Install Wordpress Helm Chart in ArgoCD
+
+#### Connect Repo in ArgoCD
+
+Go to "Setting" > "Repositories" > "Connect Repo"
+
+- CONNECT REPO USING HTTPS
+  - Type: helm
+  - Repository URL: https://charts.bitnami.com/bitnami
+
+---
+
+#### Create New App in ArgoCD
+
+Go to "Application" > "New App"
+
+- SOURCE
+  - Repository URL: https://charts.bitnami.com/bitnami
+  - Chart: wordpress
+
+- DESTINATION
+  - Cluster URL: https://kubernetes.default.svc
+  - Namespace: default
+  - CHECK: auto-namespace
+
+---
+
+#### For retrieving Wordpress UI admin password, paste the following command in the terminal:
+
+The following command with return the wordpress UI admin password:
+
+```shell
+k get secret deployment/wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode
+```
 
 ---
