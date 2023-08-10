@@ -102,12 +102,37 @@ Go to "Application" > "New App"
 
 ---
 
+#### Cross reference that all the resources have been created in the terminal:
+
+```shell
+k get all -n wordpress
+```
+
+---
+
+### Access Wordpress Website
+
+```shell
+k get svc wordpress-website -n wordpress 
+```
+
+**Copy the "EXTERNAL-IP" and paste in the browser.**
+
+---
+
+### Wordpress UI Admin Username and Password
+
+#### Go to "EXTERNAL-IP"/admin
+
+- Wordpress UI Admin **Username**: *user*
+- Wordpress UI Admin **Password**: *xxxxxxxxxxxx*
+
 #### For retrieving Wordpress UI admin password, paste the following command in the terminal:
 
 The following command with return the wordpress UI admin password:
 
 ```shell
-k get secret deployment/wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode
+k -n wordpress get secret wordpress-website -o jsonpath="{.data.wordpress-password}" | base64 --decode
 ```
 
 ---
