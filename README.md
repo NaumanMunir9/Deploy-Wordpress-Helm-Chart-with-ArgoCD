@@ -98,7 +98,7 @@ Go to "Application" > "New App"
 - DESTINATION
   - Cluster URL: https://kubernetes.default.svc
   - Namespace: default
-  - CHECK: auto-namespace
+  - CHECK: AUTO-CREATE NAMESPACE
 
 ---
 
